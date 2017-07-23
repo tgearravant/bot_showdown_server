@@ -1,5 +1,5 @@
 import os
-basedir = os.path.abspath(os.path.dirname(__file__))
+import pdb
 
 
 class BaseConfig(object):
@@ -7,8 +7,11 @@ class BaseConfig(object):
     TESTING = False
     CSRF_ENABLED = True
     SECRET_KEY = 'this-really-needs-to-be-changed'
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.dirname(os.path.realpath(__file__)) + '/dev.db'
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', 'dev.db')
     SQLALCHEMY_TRACK_MODIFICATIONS = True
+    STATIC_URL_PATH = "/static"
+    STATIC_FOLDER = "lib/static"
+    TEMPLATE_FOLDER = "lib/templates"
 
 
 class ProductionConfig(BaseConfig):
@@ -23,7 +26,7 @@ class StagingConfig(BaseConfig):
 class DevelopmentConfig(BaseConfig):
     DEVELOPMENT = True
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.dirname(os.path.realpath(__file__)) + '/dev.db'
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', 'dev.db')
 
 
 class TestingConfig(BaseConfig):

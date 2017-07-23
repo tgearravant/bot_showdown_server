@@ -3,6 +3,9 @@ from flask_migrate import Migrate, MigrateCommand
 from application import app
 from database import db
 import lib.models.player
+import lib.models.bot
+import lib.models.game
+import lib.models.game_instance
 
 migrate = Migrate(app, db)
 
